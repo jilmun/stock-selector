@@ -6,6 +6,8 @@ require(forcats)
 require(stringr)
 require(quantmod)
 
+save.image("sp500.RData")
+
 
 # scrape sp500 stock info from wikipedia ----------------------------------------
 
@@ -109,7 +111,7 @@ sp_500_hp_cor[1:6, 1:6]
 
 require(corrplot)
 sp_500_hp_cor %>%
-  corrplot(order = "hclust", addrect = 11)
+  corrplot(order="hclust", addrect=5)
 
 
 # log return mean and sd by year ------------------------------------------
@@ -124,7 +126,7 @@ sp_500.yr <- tibble(
 for (i in 1:nrow(sp_500)) {
   for (yr in 2000:2017) {
     tmp <- sp_500$log.returns[[i]] %>% filter(year(Date) == yr)
-    sp_500.yr %>% 
+    sp_500.yr <- sp_500.yr %>% 
       add_row(ticker = sp_500$ticker.symbol[i], 
               year = yr, 
               mean.log.returns = mean(tmp$Log.Returns), 

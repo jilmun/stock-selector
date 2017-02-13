@@ -16,7 +16,7 @@ get_stock_prices <- function(ticker, return_format="tibble", ...) {
   } else {
     stock_prices <- stock_prices_xts
   }
-  cat(ticker, "\n", sep="")
+  cat(ticker, " pulled in ", nrow(stock_prices), " rows\n", sep="")
   return(stock_prices)
 }
 
